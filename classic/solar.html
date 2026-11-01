@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TL96KQ5B00"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-TL96KQ5B00');
+    </script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SolarBreak — Should you go solar?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,900;1,9..144,300;1,9..144,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:       #0c1821;
+  --navy-mid:   #192433;
+  --navy-light: #243447;
+  --cream:      #faf6ee;
+  --cream-dark: #f0e8d5;
+  --gold:       #f2a900;
+  --gold-light: #fff4cc;
+  --gold-deep:  #b87800;
+  --sage:       #3a6b4f;
+  --sage-light: #ddeee5;
+  --rust:       #b84c2e;
+  --rust-light: #fce9e4;
+  --mist:       #7a96aa;
+  --rule:       #ddd4c0;
+  --ink:        #1a1610;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;}
+body{
+  background:var(--cream);
+  color:var(--ink);
+  font-family:'DM Mono',monospace;
+  font-size:13px;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* ══════════════════════════════════════
+   MASTHEAD
+══════════════════════════════════════ */
+.masthead{
+  background:var(--navy);
+  height:58px;
+  display:flex;
+  align-items:center;
+  padding:0 36px;
+  gap:18px;
+  position:sticky;
+  top:0;
+  z-index:50;
+  box-shadow:0 2px 24px rgba(0,0,0,0.35);
+}
+.masthead::after{
+  content:'';
+  position:absolute;
+  bottom:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,var(--gold) 0%,transparent 60%);
+}
+.mh-sun{width:32px;height:32px;flex-shrink:0;}
+.mh-sun .rays{animation:spinRays 20s linear infinite;transform-origin:16px 16px;}
+.mh-sun .core{animation:pulseCore 3.5s ease-in-out infinite;transform-origin:16px 16px;}
+@keyframes spinRays{to{transform:rotate(360deg);}}
+@keyframes pulseCore{0%,100%{transform:scale(1);}50%{transform:scale(1.12);}}
+.mh-brand{font-family:'Fraunces',serif;font-size:20px;font-weight:900;color:var(--cream);letter-spacing:-0.3px;}
+.mh-brand em{color:var(--gold);font-style:normal;}
+.mh-divider{width:1px;height:18px;background:rgba(255,255,255,0.12);}
+.mh-tag{font-size:9px;text-transform:uppercase;letter-spacing:0.16em;color:var(--mist);}
+.mh-spacer{flex:1;}
+.mh-badge{
+  font-size:9px;letter-spacing:0.08em;color:rgba(255,255,255,0.25);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:20px;padding:4px 10px;
+}
+
+/* ══════════════════════════════════════
+   LAYOUT
+══════════════════════════════════════ */
+.app{display:grid;grid-template-columns:360px 1fr;min-height:calc(100vh - 58px);}
+
+/* ══════════════════════════════════════
+   LEFT PANEL
+══════════════════════════════════════ */
+.left{
+  background:var(--navy-mid);
+  padding:28px 26px 48px;
+  overflow-y:auto;
+  position:relative;
+}
+.left::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background-image:radial-gradient(rgba(255,255,255,0.025) 1px,transparent 1px);
+  background-size:20px 20px;
+}
+.left-hero{margin-bottom:24px;}
+.left-eyebrow{font-size:8px;text-transform:uppercase;letter-spacing:0.2em;color:var(--gold);margin-bottom:5px;}
+.left-headline{
+  font-family:'Fraunces',serif;font-size:24px;font-weight:900;
+  color:var(--cream);line-height:1.15;
+}
+.left-headline em{font-style:italic;font-weight:300;color:rgba(255,255,255,0.4);display:block;font-size:20px;}
+
+.sec-lbl{
+  font-size:8px;text-transform:uppercase;letter-spacing:0.18em;color:var(--mist);
+  margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid rgba(255,255,255,0.07);
+}
+.fg{margin-bottom:14px;}
+.fl{display:block;font-size:9px;letter-spacing:0.08em;color:rgba(255,255,255,0.38);margin-bottom:5px;text-transform:uppercase;}
+input,select{
+  width:100%;padding:10px 13px;
+  background:rgba(255,255,255,0.055);
+  border:1px solid rgba(255,255,255,0.1);
+  color:var(--cream);font-family:'DM Mono',monospace;font-size:14px;
+  border-radius:7px;outline:none;
+  transition:border-color 0.2s,background 0.2s,box-shadow 0.2s;
+  -webkit-appearance:none;appearance:none;
+}
+input::placeholder{color:rgba(255,255,255,0.18);}
+input:focus,select:focus{
+  border-color:var(--gold);
+  background:rgba(242,169,0,0.07);
+  box-shadow:0 0 0 3px rgba(242,169,0,0.14);
+}
+select option{background:var(--navy-mid);color:var(--cream);}
+.iu{position:relative;}
+.unit{
+  position:absolute;right:11px;top:50%;transform:translateY(-50%);
+  font-size:9px;color:rgba(255,255,255,0.28);letter-spacing:0.04em;pointer-events:none;
+}
+.divider{border:none;border-top:1px solid rgba(255,255,255,0.06);margin:18px 0;}
+
+/* Sun hint */
+.sun-hint{
+  background:rgba(242,169,0,0.09);border:1px solid rgba(242,169,0,0.22);
+  border-radius:7px;padding:8px 11px;font-size:10px;color:rgba(255,220,80,0.82);
+  margin-top:-6px;margin-bottom:14px;line-height:1.55;display:none;
+}
+.sun-hint strong{color:var(--gold);}
+
+/* Toggle group */
+.tg{display:flex;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:7px;overflow:hidden;}
+.tg input[type="radio"]{display:none;}
+.tg label{
+  flex:1;padding:9px 0;text-align:center;cursor:pointer;
+  font-size:10px;letter-spacing:0.08em;text-transform:uppercase;
+  color:rgba(255,255,255,0.35);border-right:1px solid rgba(255,255,255,0.08);
+  transition:all 0.2s;display:block;margin:0;
+}
+.tg label:last-of-type{border-right:none;}
+.tg input[type="radio"]:checked+label{background:var(--gold);color:var(--navy);font-weight:500;}
+
+/* Switch */
+.sw-row{display:flex;align-items:center;gap:10px;margin-bottom:10px;cursor:pointer;}
+.sw-row span{font-size:9px;color:rgba(255,255,255,0.38);text-transform:uppercase;letter-spacing:0.07em;}
+input.sw{display:none;}
+.sw-track{width:32px;height:17px;background:rgba(255,255,255,0.1);border-radius:9px;position:relative;transition:background 0.2s;flex-shrink:0;}
+.sw-track::after{content:'';position:absolute;top:2.5px;left:2.5px;width:12px;height:12px;background:rgba(255,255,255,0.45);border-radius:50%;transition:transform 0.2s,background 0.2s;}
+input.sw:checked+.sw-track{background:var(--gold);}
+input.sw:checked+.sw-track::after{transform:translateX(15px);background:var(--navy);}
+
+/* State incentive radios */
+.inc-list{display:flex;flex-direction:column;gap:5px;}
+.inc-item{display:flex;align-items:center;gap:9px;cursor:pointer;padding:3px 0;}
+.inc-item input[type="radio"]{
+  width:13px;height:13px;-webkit-appearance:auto;appearance:auto;
+  accent-color:var(--gold);cursor:pointer;flex-shrink:0;margin:0;padding:0;border:none;background:none;
+}
+.ir-lbl{font-size:10px;color:rgba(255,255,255,0.45);flex:1;}
+.ir-amt{font-size:10px;color:rgba(242,169,0,0.6);font-weight:500;}
+.inc-item input[type="radio"]:checked~.ir-lbl{color:var(--cream);}
+.inc-item input[type="radio"]:checked~.ir-amt{color:var(--gold);}
+
+/* ITC box */
+.itc-box{
+  background:rgba(242,169,0,0.07);border:1px solid rgba(242,169,0,0.18);
+  border-radius:7px;padding:9px 12px;margin-bottom:8px;
+  font-size:9px;color:rgba(255,210,60,0.65);line-height:1.65;
+}
+.itc-check{display:flex;align-items:center;gap:8px;cursor:pointer;}
+.itc-check input[type="checkbox"]{
+  width:13px;height:13px;-webkit-appearance:auto;appearance:auto;
+  accent-color:var(--gold);margin:0;padding:0;border:none;background:none;flex-shrink:0;
+}
+.itc-check span{font-size:9px;color:rgba(255,255,255,0.38);text-transform:uppercase;letter-spacing:0.06em;}
+
+/* CTA */
+.cta{
+  width:100%;margin-top:24px;padding:0;background:none;border:none;cursor:pointer;
+  border-radius:9px;overflow:hidden;position:relative;
+}
+.cta-inner{
+  display:flex;align-items:center;justify-content:center;gap:11px;
+  padding:15px 22px;
+  background:linear-gradient(135deg,#f5b800 0%,#ffd040 40%,var(--gold-deep) 100%);
+  border-radius:9px;
+  transition:transform 0.15s,box-shadow 0.2s;
+  position:relative;overflow:hidden;
+}
+.cta-inner::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,0.3) 0%,transparent 55%);
+  pointer-events:none;
+}
+.cta:hover .cta-inner{transform:translateY(-2px);box-shadow:0 10px 36px rgba(242,169,0,0.5);}
+.cta:active .cta-inner{transform:translateY(0);}
+.cta-sun{width:20px;height:20px;animation:ctaSpin 5s linear infinite paused;}
+.cta:hover .cta-sun{animation-play-state:running;}
+@keyframes ctaSpin{to{transform:rotate(360deg);}}
+.cta-txt{font-family:'Fraunces',serif;font-size:16px;font-weight:900;color:var(--navy);letter-spacing:-0.2px;}
+.cta-arr{font-size:17px;color:var(--navy);transition:transform 0.2s;}
+.cta:hover .cta-arr{transform:translateX(5px);}
+.foot-note{margin-top:14px;font-size:9px;color:rgba(255,255,255,0.18);text-align:center;line-height:1.7;}
+.foot-note a{color:rgba(242,169,0,0.5);cursor:pointer;text-decoration:underline;}
+
+/* ══════════════════════════════════════
+   RIGHT PANEL
+══════════════════════════════════════ */
+.right{
+  padding:36px 40px 56px;
+  overflow-y:auto;
+  position:relative;
+  transition:background 0.8s ease;
+}
+.right::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 60% 50% at 80% -10%,rgba(242,169,0,0.06) 0%,transparent 70%);
+  transition:opacity 0.8s;
+}
+.right.mood-good::before{background:radial-gradient(ellipse 70% 60% at 85% -5%,rgba(58,107,79,0.1) 0%,transparent 70%);}
+.right.mood-poor::before{background:radial-gradient(ellipse 70% 60% at 85% -5%,rgba(184,76,46,0.07) 0%,transparent 70%);}
+
+/* Empty state */
+.empty{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  min-height:75vh;gap:20px;
+}
+.empty-sun-wrap{animation:emptyFloat 5s ease-in-out infinite;}
+@keyframes emptyFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+.empty-txt{
+  font-family:'Fraunces',serif;font-size:21px;font-weight:300;font-style:italic;
+  color:var(--mist);text-align:center;line-height:1.5;
+}
+
+/* Results */
+#rc{animation:slideIn 0.45s cubic-bezier(0.16,1,0.3,1) forwards;}
+@keyframes slideIn{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+
+/* ── VERDICT ── */
+.verdict{
+  border-radius:12px;padding:20px 22px;margin-bottom:30px;
+  display:flex;align-items:center;gap:16px;
+  position:relative;overflow:hidden;
+}
+.verdict::after{
+  content:'';position:absolute;right:-30px;top:-30px;
+  width:110px;height:110px;border-radius:50%;opacity:0.1;
+}
+.verdict.good{background:var(--sage-light);}
+.verdict.good::after{background:var(--sage);}
+.verdict.fair{background:var(--gold-light);}
+.verdict.fair::after{background:var(--gold);}
+.verdict.poor{background:var(--rust-light);}
+.verdict.poor::after{background:var(--rust);}
+.v-icon{font-size:30px;flex-shrink:0;}
+.v-body{flex:1;}
+.v-text{font-family:'Fraunces',serif;font-size:21px;font-weight:900;color:var(--navy);line-height:1.2;}
+.v-sub{font-size:10px;color:var(--mist);margin-top:4px;letter-spacing:0.03em;}
+.v-pill{
+  font-size:8px;text-transform:uppercase;letter-spacing:0.13em;
+  padding:6px 13px;border-radius:20px;font-weight:500;white-space:nowrap;
+}
+.verdict.good .v-pill{background:var(--sage);color:white;}
+.verdict.fair .v-pill{background:var(--gold-deep);color:white;}
+.verdict.poor .v-pill{background:var(--rust);color:white;}
+
+/* ── SECTION HEAD ── */
+.sh{
+  display:flex;align-items:center;gap:12px;
+  margin-bottom:14px;
+}
+.sh-title{font-family:'Fraunces',serif;font-size:15px;font-weight:600;color:var(--navy);}
+.sh-tag{font-size:8px;text-transform:uppercase;letter-spacing:0.13em;color:var(--mist);}
+.sh-rule{flex:1;height:1px;background:var(--rule);}
+.sh-gold{flex:1;height:2px;background:linear-gradient(90deg,var(--gold) 0%,transparent 100%);}
+
+/* ── RADIAL ARC + STATS ── */
+.hero-row{
+  display:grid;grid-template-columns:200px 1fr;
+  gap:0;margin-bottom:4px;
+  background:white;border:1px solid var(--rule);border-radius:10px;overflow:hidden;
+}
+.arc-cell{
+  background:var(--navy);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:24px 16px;position:relative;
+}
+.arc-cell::after{
+  content:'';position:absolute;right:0;top:10%;bottom:10%;width:1px;
+  background:linear-gradient(180deg,transparent,rgba(255,255,255,0.12),transparent);
+}
+#arc-svg{overflow:visible;}
+.arc-label{
+  text-align:center;margin-top:10px;
+}
+.arc-years{
+  font-family:'Fraunces',serif;font-size:28px;font-weight:900;
+  color:var(--cream);line-height:1;
+}
+.arc-sub{font-size:9px;color:var(--mist);letter-spacing:0.1em;text-transform:uppercase;margin-top:3px;}
+.stats-cell{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--rule);}
+.s-cell{
+  background:white;padding:13px 14px;
+  transition:background 0.15s;
+}
+.s-cell:hover{background:var(--cream);}
+.s-cell.money{background:#fffef5;}
+.s-cell.money:hover{background:#fff8e0;}
+.s-lbl{font-size:8px;text-transform:uppercase;letter-spacing:0.12em;color:var(--mist);margin-bottom:4px;}
+.s-val{
+  font-family:'Fraunces',serif;font-size:21px;font-weight:900;
+  line-height:1;color:var(--navy);
+}
+.s-val.gold{color:var(--gold-deep);}
+.s-val.sage{color:var(--sage);}
+.s-hint{font-size:9px;color:var(--mist);margin-top:3px;}
+
+/* ── STACKED BAR BREAKDOWN ── */
+.breakdown-wrap{margin-bottom:28px;}
+.stacked-bar-outer{
+  height:28px;border-radius:6px;overflow:hidden;
+  display:flex;margin-bottom:10px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.08);
+}
+.sb-seg{
+  height:100%;transition:flex 0.6s cubic-bezier(0.4,0,0.2,1);
+  position:relative;cursor:default;
+}
+.sb-seg:hover::after{
+  content:attr(data-tip);
+  position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);
+  background:var(--navy);color:white;font-size:9px;padding:5px 9px;border-radius:5px;
+  white-space:nowrap;pointer-events:none;z-index:10;letter-spacing:0.03em;
+}
+.bd-legend{display:flex;flex-wrap:wrap;gap:6px 14px;}
+.bd-leg-item{display:flex;align-items:center;gap:5px;font-size:9px;color:var(--mist);}
+.bd-dot{width:9px;height:9px;border-radius:2px;flex-shrink:0;}
+.bd-leg-val{color:var(--navy);font-weight:500;margin-left:2px;}
+.bd-note{font-size:9px;color:var(--mist);margin-top:8px;line-height:1.6;}
+
+/* ── INCENTIVE PILLS ── */
+.ipills{display:flex;gap:8px;margin-bottom:28px;flex-wrap:wrap;}
+.ipill{
+  display:flex;align-items:center;gap:7px;
+  padding:7px 13px;border-radius:7px;font-size:10px;letter-spacing:0.03em;border:1px solid;
+}
+.ipill.sage{background:var(--sage-light);border-color:var(--sage);color:var(--sage);}
+.ipill.gold{background:var(--gold-light);border-color:var(--gold-deep);color:var(--gold-deep);}
+.ipill.mist{background:var(--cream-dark);border-color:var(--rule);color:var(--mist);flex:1;min-width:180px;}
+.ipill.mist a{color:var(--gold-deep);text-decoration:underline;}
+.ipill-amt{font-size:13px;font-weight:500;}
+
+/* ── PAYBACK CHART ── */
+.chart-wrap{margin-bottom:28px;}
+.chart-cap{font-size:9px;color:var(--mist);margin-bottom:10px;letter-spacing:0.03em;}
+#payback-svg{
+  width:100%;display:block;
+  background:white;border:1px solid var(--rule);border-radius:8px;
+}
+.chart-leg{display:flex;gap:18px;margin-top:10px;flex-wrap:wrap;}
+.cl-item{display:flex;align-items:center;gap:6px;font-size:9px;color:var(--mist);text-transform:uppercase;letter-spacing:0.07em;}
+.cl-swatch{width:18px;height:2px;border-radius:1px;}
+.chart-sum{margin-top:10px;font-size:11px;color:var(--sage);letter-spacing:0.02em;}
+.chart-sum strong{font-weight:500;}
+
+/* ── SCENARIOS ── */
+.sc-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:28px;}
+.sc-card{
+  background:white;border:1.5px solid var(--rule);border-radius:9px;
+  padding:16px;position:relative;
+  transition:transform 0.18s,box-shadow 0.18s,border-color 0.15s;
+}
+.sc-card:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(12,24,33,0.1);}
+.sc-card.sel{
+  border-color:var(--gold);
+  background:linear-gradient(140deg,#fffef5 0%,#fff8d0 100%);
+}
+.sc-card.best{border-color:var(--sage)!important;}
+.sc-type{font-size:8px;text-transform:uppercase;letter-spacing:0.13em;color:var(--mist);margin-bottom:5px;}
+.sc-card.sel .sc-type{color:var(--gold-deep);}
+.sc-name{font-family:'Fraunces',serif;font-size:13px;font-weight:600;color:var(--navy);margin-bottom:10px;line-height:1.25;}
+.sc-row{
+  display:flex;justify-content:space-between;align-items:baseline;
+  padding:4px 0;border-bottom:1px solid var(--rule);font-size:11px;
+}
+.sc-row:last-child{border-bottom:none;}
+.sc-row .sk{color:var(--mist);}
+.sc-row .sv{font-weight:500;}
+.sc-row .sv.g{color:var(--sage);}
+.sc-row .sv.a{color:var(--gold-deep);}
+.sc-badge{
+  position:absolute;top:-1px;right:12px;
+  font-size:7px;text-transform:uppercase;letter-spacing:0.1em;padding:3px 8px;border-radius:0 0 5px 5px;
+}
+.sc-badge.fin{background:var(--gold);color:var(--navy);}
+.sc-badge.bst{background:var(--sage);color:white;}
+.sc-badge.both{background:var(--navy);color:var(--gold);}
+
+/* ── DISCLAIMER ── */
+.disc{font-size:9px;color:var(--mist);line-height:1.75;padding-top:4px;}
+
+/* ── MODAL ── */
+.modal{display:none;position:fixed;inset:0;background:rgba(12,24,33,0.72);z-index:200;align-items:center;justify-content:center;backdrop-filter:blur(6px);}
+.modal.open{display:flex;}
+.modal-box{
+  background:var(--cream);border:2px solid var(--navy);border-radius:12px;
+  padding:30px;max-width:520px;width:92%;max-height:82vh;overflow-y:auto;position:relative;
+  animation:mIn 0.25s ease;
+}
+@keyframes mIn{from{transform:scale(0.94);opacity:0;}to{transform:scale(1);opacity:1;}}
+.modal-title{font-family:'Fraunces',serif;font-size:19px;font-weight:900;color:var(--navy);margin-bottom:16px;padding-bottom:11px;border-bottom:2px solid var(--navy);}
+.mc{position:absolute;top:16px;right:18px;background:none;border:none;font-size:18px;cursor:pointer;color:var(--mist);transition:color 0.15s;}
+.mc:hover{color:var(--navy);}
+.ar{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid var(--rule);font-size:11px;gap:14px;}
+.ar:last-of-type{border-bottom:none;}
+.ar .ak{color:var(--mist);}
+.ar .av{font-weight:500;text-align:right;}
+.mf{margin-top:14px;font-size:9px;color:var(--mist);line-height:1.7;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .app{grid-template-columns:1fr;}
+  .left{border-bottom:2px solid var(--gold);}
+  .hero-row{grid-template-columns:1fr;}
+  .arc-cell{padding:20px;}
+  .stats-cell{grid-template-columns:1fr 1fr;}
+  .sc-grid{grid-template-columns:1fr;}
+  .masthead{padding:0 20px;}
+  .right{padding:24px 20px 40px;}
+}
+</style>
+</head>
+<body>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <svg class="mh-sun" viewBox="0 0 32 32" fill="none">
+    <g class="rays">
+      <line x1="16" y1="1" x2="16" y2="6" stroke="#f2a900" stroke-width="2" stroke-linecap="round"/>
+      <line x1="16" y1="26" x2="16" y2="31" stroke="#f2a900" stroke-width="2" stroke-linecap="round"/>
+      <line x1="1" y1="16" x2="6" y2="16" stroke="#f2a900" stroke-width="2" stroke-linecap="round"/>
+      <line x1="26" y1="16" x2="31" y2="16" stroke="#f2a900" stroke-width="2" stroke-linecap="round"/>
+      <line x1="4.9" y1="4.9" x2="8.4" y2="8.4" stroke="#f2a900" stroke-width="2" stroke-linecap="round"/>
+      <line x1="23.6" y1="23.6" x2="27.1" y2="27.1" stroke="#f2a900" stroke-width="2" stroke-linecap="round"/>
+      <line x1="27.1" y1="4.9" x2="23.6" y2="8.4" stroke="#f2a900" stroke-width="2" stroke-linecap="round"/>
+      <line x1="8.4" y1="23.6" x2="4.9" y2="27.1" stroke="#f2a900" stroke-width="2" stroke-linecap="round"/>
+    </g>
+    <circle class="core" cx="16" cy="16" r="7" fill="#f2a900"/>
+    <circle cx="16" cy="16" r="4.5" fill="#ffd050"/>
+  </svg>
+  <div class="mh-brand">Solar<em>Break</em></div>
+  <div class="mh-divider"></div>
+  <div class="mh-tag">Residential Estimator</div>
+  <div class="mh-spacer"></div>
+  <div class="mh-badge">No signup · No data collected</div>
+</header>
+
+<div class="app">
+<!-- ══ LEFT PANEL ══ -->
+<div class="left">
+  <div class="left-hero">
+    <div class="left-eyebrow">Your situation</div>
+    <div class="left-headline">Is solar right<em>for your home?</em></div>
+  </div>
+
+  <div class="sec-lbl">Electricity</div>
+  <div class="fg">
+    <label class="fl">Avg. Monthly Bill</label>
+    <div class="iu"><input type="number" id="bill" placeholder="150" min="0" max="5000"><span class="unit">USD / mo</span></div>
+  </div>
+  <div class="fg">
+    <label class="fl">Monthly Usage</label>
+    <div class="iu"><input type="number" id="kwh" placeholder="900" min="0" max="20000"><span class="unit">kWh / mo</span></div>
+  </div>
+  <div class="fg">
+    <label class="fl">State</label>
+    <select id="state" onchange="onState()">
+      <option value="avg">— Select your state —</option>
+      <option value="AL">Alabama</option><option value="AK">Alaska</option><option value="AZ">Arizona</option>
+      <option value="AR">Arkansas</option><option value="CA">California</option><option value="CO">Colorado</option>
+      <option value="CT">Connecticut</option><option value="DE">Delaware</option><option value="FL">Florida</option>
+      <option value="GA">Georgia</option><option value="HI">Hawaii</option><option value="ID">Idaho</option>
+      <option value="IL">Illinois</option><option value="IN">Indiana</option><option value="IA">Iowa</option>
+      <option value="KS">Kansas</option><option value="KY">Kentucky</option><option value="LA">Louisiana</option>
+      <option value="ME">Maine</option><option value="MD">Maryland</option><option value="MA">Massachusetts</option>
+      <option value="MI">Michigan</option><option value="MN">Minnesota</option><option value="MS">Mississippi</option>
+      <option value="MO">Missouri</option><option value="MT">Montana</option><option value="NE">Nebraska</option>
+      <option value="NV">Nevada</option><option value="NH">New Hampshire</option><option value="NJ">New Jersey</option>
+      <option value="NM">New Mexico</option><option value="NY">New York</option><option value="NC">North Carolina</option>
+      <option value="ND">North Dakota</option><option value="OH">Ohio</option><option value="OK">Oklahoma</option>
+      <option value="OR">Oregon</option><option value="PA">Pennsylvania</option><option value="RI">Rhode Island</option>
+      <option value="SC">South Carolina</option><option value="SD">South Dakota</option><option value="TN">Tennessee</option>
+      <option value="TX">Texas</option><option value="UT">Utah</option><option value="VT">Vermont</option>
+      <option value="VA">Virginia</option><option value="WA">Washington</option><option value="WV">West Virginia</option>
+      <option value="WI">Wisconsin</option><option value="WY">Wyoming</option>
+    </select>
+  </div>
+  <div id="sun-hint" class="sun-hint"></div>
+
+  <div class="divider"></div>
+  <div class="sec-lbl">Roof <span style="opacity:.45">(optional)</span></div>
+  <div class="fg">
+    <label class="fl">Usable Roof Size</label>
+    <select id="roof">
+      <option value="0">Not sure — use defaults</option>
+      <option value="300">Small (townhouse / condo)</option>
+      <option value="500" selected>Medium (average home)</option>
+      <option value="800">Large</option>
+      <option value="1200">Very large (ranch / estate)</option>
+    </select>
+  </div>
+
+  <div class="divider"></div>
+  <div class="sec-lbl">Financing</div>
+  <div class="fg">
+    <label class="fl">Purchase Method</label>
+    <div class="tg">
+      <input type="radio" name="fin" id="fc" value="cash" checked><label for="fc">Cash</label>
+      <input type="radio" name="fin" id="fl2" value="loan"><label for="fl2">Loan</label>
+    </div>
+  </div>
+  <div class="fg" id="apr-g" style="display:none">
+    <label class="fl">Loan APR</label>
+    <div class="iu"><input type="number" id="apr" placeholder="6.5" min="0" max="25" step="0.1"><span class="unit">%</span></div>
+  </div>
+  <div class="fg" id="term-g" style="display:none">
+    <label class="fl">Loan Term</label>
+    <select id="term">
+      <option value="10">10 years</option><option value="15" selected>15 years</option>
+      <option value="20">20 years</option><option value="25">25 years</option>
+    </select>
+  </div>
+
+  <div class="divider"></div>
+  <div class="sec-lbl">Got a Quote?</div>
+  <div class="fg">
+    <label class="sw-row" for="use-custom">
+      <input class="sw" type="checkbox" id="use-custom" onchange="toggleCustom()">
+      <div class="sw-track"></div>
+      <span>Use my own installed cost</span>
+    </label>
+    <div id="custom-g" style="display:none;margin-top:6px">
+      <div class="iu"><input type="number" id="custom-cost" placeholder="28000" min="500" max="500000"><span class="unit">USD total</span></div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+  <div class="sec-lbl">Incentives</div>
+  <div class="fg">
+    <label class="fl">State / Utility Rebate</label>
+    <div class="inc-list">
+      <label class="inc-item"><input type="radio" name="si" value="0" checked><span class="ir-lbl">None / not sure</span><span class="ir-amt">$0</span></label>
+      <label class="inc-item"><input type="radio" name="si" value="1000"><span class="ir-lbl">Small rebate</span><span class="ir-amt">~$1,000</span></label>
+      <label class="inc-item"><input type="radio" name="si" value="2500"><span class="ir-lbl">Moderate rebate</span><span class="ir-amt">~$2,500</span></label>
+      <label class="inc-item"><input type="radio" name="si" value="5000"><span class="ir-lbl">Generous rebate</span><span class="ir-amt">$5,000+</span></label>
+    </div>
+  </div>
+  <div class="fg">
+    <div class="itc-box">The 30% federal residential ITC was eliminated July 2025. Systems installed before Jan 1, 2026 may still qualify.</div>
+    <label class="itc-check">
+      <input type="checkbox" id="itc">
+      <span>Apply 30% federal ITC (pre-2026 install)</span>
+    </label>
+  </div>
+
+  <button class="cta" onclick="calc()">
+    <div class="cta-inner">
+      <svg class="cta-sun" viewBox="0 0 20 20" fill="none">
+        <circle cx="10" cy="10" r="4" fill="#0c1821"/>
+        <line x1="10" y1="1" x2="10" y2="3.5" stroke="#0c1821" stroke-width="1.8" stroke-linecap="round"/>
+        <line x1="10" y1="16.5" x2="10" y2="19" stroke="#0c1821" stroke-width="1.8" stroke-linecap="round"/>
+        <line x1="1" y1="10" x2="3.5" y2="10" stroke="#0c1821" stroke-width="1.8" stroke-linecap="round"/>
+        <line x1="16.5" y1="10" x2="19" y2="10" stroke="#0c1821" stroke-width="1.8" stroke-linecap="round"/>
+        <line x1="3.5" y1="3.5" x2="5.5" y2="5.5" stroke="#0c1821" stroke-width="1.8" stroke-linecap="round"/>
+        <line x1="14.5" y1="14.5" x2="16.5" y2="16.5" stroke="#0c1821" stroke-width="1.8" stroke-linecap="round"/>
+        <line x1="16.5" y1="3.5" x2="14.5" y2="5.5" stroke="#0c1821" stroke-width="1.8" stroke-linecap="round"/>
+        <line x1="5.5" y1="14.5" x2="3.5" y2="16.5" stroke="#0c1821" stroke-width="1.8" stroke-linecap="round"/>
+      </svg>
+      <span class="cta-txt">Calculate my break-even</span>
+      <span class="cta-arr">→</span>
+    </div>
+  </button>
+  <div class="foot-note">No data stored. Estimates only.<br><a onclick="openModal()">View assumptions & methodology</a></div>
+</div>
+
+<!-- ══ RIGHT PANEL ══ -->
+<div class="right" id="right">
+
+  <div class="empty" id="empty">
+    <div class="empty-sun-wrap">
+      <svg width="110" height="110" viewBox="0 0 32 32" fill="none" style="opacity:0.13">
+        <g style="transform-origin:16px 16px;animation:spinRays 22s linear infinite">
+          <line x1="16" y1="1" x2="16" y2="6" stroke="#b87800" stroke-width="2" stroke-linecap="round"/>
+          <line x1="16" y1="26" x2="16" y2="31" stroke="#b87800" stroke-width="2" stroke-linecap="round"/>
+          <line x1="1" y1="16" x2="6" y2="16" stroke="#b87800" stroke-width="2" stroke-linecap="round"/>
+          <line x1="26" y1="16" x2="31" y2="16" stroke="#b87800" stroke-width="2" stroke-linecap="round"/>
+          <line x1="4.9" y1="4.9" x2="8.4" y2="8.4" stroke="#b87800" stroke-width="2" stroke-linecap="round"/>
+          <line x1="23.6" y1="23.6" x2="27.1" y2="27.1" stroke="#b87800" stroke-width="2" stroke-linecap="round"/>
+          <line x1="27.1" y1="4.9" x2="23.6" y2="8.4" stroke="#b87800" stroke-width="2" stroke-linecap="round"/>
+          <line x1="8.4" y1="23.6" x2="4.9" y2="27.1" stroke="#b87800" stroke-width="2" stroke-linecap="round"/>
+        </g>
+        <circle cx="16" cy="16" r="7" fill="#b87800"/>
+        <circle cx="16" cy="16" r="4.5" fill="#f2a900"/>
+      </svg>
+    </div>
+    <div class="empty-txt">Enter your details<br>and let's find out.</div>
+  </div>
+
+  <div id="rc" style="display:none">
+
+    <!-- VERDICT -->
+    <div class="verdict" id="vb">
+      <div class="v-icon" id="vi"></div>
+      <div class="v-body">
+        <div class="v-text" id="vt"></div>
+        <div class="v-sub" id="vs"></div>
+      </div>
+      <div class="v-pill" id="vp"></div>
+    </div>
+
+    <!-- RADIAL ARC + STATS -->
+    <div class="sh"><span class="sh-title">System Overview</span><span class="sh-tag">Estimated</span><div class="sh-gold"></div></div>
+    <div class="hero-row" style="margin-bottom:2px">
+      <div class="arc-cell">
+        <svg id="arc-svg" width="140" height="140" viewBox="0 0 140 140"></svg>
+        <div class="arc-label">
+          <div class="arc-years" id="arc-years">—</div>
+          <div class="arc-sub">yr break-even</div>
+        </div>
+      </div>
+      <div class="stats-cell">
+        <div class="s-cell">
+          <div class="s-lbl">System Size</div>
+          <div class="s-val" id="s-kw">—</div>
+          <div class="s-hint">kilowatts (kW)</div>
+        </div>
+        <div class="s-cell">
+          <div class="s-lbl">Annual Output</div>
+          <div class="s-val sage" id="s-prod">—</div>
+          <div class="s-hint">kWh / year</div>
+        </div>
+        <div class="s-cell">
+          <div class="s-lbl">Monthly Savings</div>
+          <div class="s-val sage" id="s-save">—</div>
+          <div class="s-hint">avg. first year</div>
+        </div>
+        <div class="s-cell money">
+          <div class="s-lbl">Install Cost</div>
+          <div class="s-val gold" id="s-gross">—</div>
+          <div class="s-hint">before incentives</div>
+        </div>
+        <div class="s-cell money">
+          <div class="s-lbl">After Incentives</div>
+          <div class="s-val" id="s-net">—</div>
+          <div class="s-hint">net cost</div>
+        </div>
+        <div class="s-cell money">
+          <div class="s-lbl">25-yr Net Profit</div>
+          <div class="s-val sage" id="s-profit">—</div>
+          <div class="s-hint">cash purchase</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COST BREAKDOWN -->
+    <div class="breakdown-wrap">
+      <div class="stacked-bar-outer" id="sbar"></div>
+      <div class="bd-legend" id="bd-legend"></div>
+      <div class="bd-note" id="bd-note"></div>
+    </div>
+
+    <!-- INCENTIVES -->
+    <div class="sh" style="margin-bottom:10px"><span class="sh-title">Incentives Applied</span><span class="sh-tag">As Selected</span><div class="sh-gold"></div></div>
+    <div class="ipills" id="ipills"></div>
+
+    <!-- CHART -->
+    <div class="sh"><span class="sh-title">Payback Over 25 Years</span><span class="sh-tag">Cash Basis</span><div class="sh-gold"></div></div>
+    <div class="chart-wrap">
+      <div class="chart-cap">Cumulative savings vs. net system cost — curves cross at break-even</div>
+      <svg id="payback-svg" height="190" viewBox="0 0 700 190" preserveAspectRatio="none"></svg>
+      <div class="chart-leg">
+        <div class="cl-item"><div class="cl-swatch" style="background:var(--sage)"></div>Cumulative savings</div>
+        <div class="cl-item"><div class="cl-swatch" style="border-top:2px dashed var(--gold-deep);background:none"></div>Net system cost</div>
+        <div class="cl-item"><div class="cl-swatch" style="background:var(--navy);width:10px;height:10px;border-radius:50%"></div>Break-even</div>
+      </div>
+      <div class="chart-sum">▶ 25-year net profit (cash): <strong id="chart-profit"></strong></div>
+    </div>
+
+    <!-- SCENARIOS -->
+    <div class="sh"><span class="sh-title">Scenario Comparison</span><span class="sh-tag">All Options</span><div class="sh-gold"></div></div>
+    <div class="sc-grid" id="sc-grid"></div>
+
+    <div class="disc">* Estimates only. Costs and savings vary by installer, utility, permitting and performance. Consult a licensed solar installer for a formal proposal. The federal 30% ITC was eliminated July 2025 for new residential installs.</div>
+  </div>
+</div>
+</div>
+
+<!-- MODAL -->
+<div class="modal" id="modal" onclick="if(event.target===this)closeModal()">
+  <div class="modal-box">
+    <div class="modal-title">Assumptions & Methodology</div>
+    <button class="mc" onclick="closeModal()">✕</button>
+    <div class="ar"><span class="ak">Panel efficiency</span><span class="av">20% (standard residential)</span></div>
+    <div class="ar"><span class="ak">Roof: Small</span><span class="av">300 sq ft (~4.6 kW max)</span></div>
+    <div class="ar"><span class="ak">Roof: Medium</span><span class="av">500 sq ft (~7.7 kW max)</span></div>
+    <div class="ar"><span class="ak">Roof: Large</span><span class="av">800 sq ft (~12.3 kW max)</span></div>
+    <div class="ar"><span class="ak">Roof: Very large</span><span class="av">1,200 sq ft (~18.5 kW max)</span></div>
+    <div class="ar"><span class="ak">Base install cost</span><span class="av">$2.85/W national avg</span></div>
+    <div class="ar"><span class="ak">Labor cost</span><span class="av">State-indexed (18–32% of total)</span></div>
+    <div class="ar"><span class="ak">Battery (CA)</span><span class="av">~$4,000 (single unit, state avg)</span></div>
+    <div class="ar"><span class="ak">Battery (other states)</span><span class="av">~$7,000–$10,000</span></div>
+    <div class="ar"><span class="ak">Federal ITC (2025)</span><span class="av">Eliminated July 4, 2025 for new installs</span></div>
+    <div class="ar"><span class="ak">State incentives</span><span class="av">User-selected tiers, not modeled by state</span></div>
+    <div class="ar"><span class="ak">Sun hours</span><span class="av">Derived from state avg peak sun</span></div>
+    <div class="ar"><span class="ak">System degradation</span><span class="av">0.5% per year</span></div>
+    <div class="ar"><span class="ak">Electricity rate inflation</span><span class="av">2.5% per year</span></div>
+    <div class="ar"><span class="ak">O&M cost (years 11–25)</span><span class="av">$150/year</span></div>
+    <div class="ar"><span class="ak">Default loan APR</span><span class="av">6.5%</span></div>
+    <div class="mf">State cost multipliers, labor rates, and sun hours derived from regional data. For educational estimation only.</div>
+  </div>
+</div>
+
+<script>
+// Finance toggle
+document.querySelectorAll('input[name="fin"]').forEach(r=>{
+  r.addEventListener('change',()=>{
+    const loan=r.value==='loan'&&r.checked;
+    document.getElementById('apr-g').style.display=loan?'':'none';
+    document.getElementById('term-g').style.display=loan?'':'none';
+  });
+});
+function toggleCustom(){
+  const on=document.getElementById('use-custom').checked;
+  document.getElementById('custom-g').style.display=on?'':'none';
+}
+
+// State data: [costMult, sunHours, sunDesc, laborPct, battCost]
+// laborPct = fraction of gross that is labor
+// battCost = single-unit battery installed cost
+const SD={
+  AL:[0.93,4.8,'moderate',0.20,8000],   AK:[1.18,2.8,'low',0.28,10000],
+  AZ:[0.96,6.5,'excellent',0.19,7500],  AR:[0.92,4.7,'moderate',0.19,8000],
+  CA:[1.12,5.8,'high',0.30,4000],       CO:[1.02,5.5,'high',0.21,8500],
+  CT:[1.15,4.1,'moderate',0.28,9000],   DE:[1.02,4.2,'moderate',0.22,8500],
+  FL:[0.97,5.5,'high',0.20,7500],       GA:[0.96,5.0,'moderate',0.20,8000],
+  HI:[1.24,5.7,'high',0.32,10000],      ID:[0.95,4.8,'moderate',0.19,8000],
+  IL:[1.01,4.0,'moderate',0.22,8500],   IN:[0.94,3.9,'moderate',0.20,8000],
+  IA:[0.94,4.2,'moderate',0.20,8000],   KS:[0.93,5.0,'moderate',0.19,8000],
+  KY:[0.93,4.2,'moderate',0.19,8000],   LA:[0.92,5.0,'moderate',0.19,8000],
+  ME:[1.02,4.2,'moderate',0.24,9000],   MD:[1.08,4.5,'moderate',0.25,8500],
+  MA:[1.14,4.2,'moderate',0.28,9000],   MI:[0.95,3.8,'low',0.21,8500],
+  MN:[0.96,4.1,'moderate',0.22,8500],   MS:[0.92,5.0,'moderate',0.19,8000],
+  MO:[0.94,4.5,'moderate',0.20,8000],   MT:[0.96,4.5,'moderate',0.20,8500],
+  NE:[0.93,4.9,'moderate',0.19,8000],   NV:[0.97,6.4,'excellent',0.20,7500],
+  NH:[1.04,4.0,'moderate',0.25,9000],   NJ:[1.12,4.4,'moderate',0.27,9000],
+  NM:[0.95,6.8,'excellent',0.19,7500],  NY:[1.13,4.2,'moderate',0.28,9000],
+  NC:[0.98,4.9,'moderate',0.20,8000],   ND:[0.94,4.4,'moderate',0.19,8000],
+  OH:[0.95,3.9,'moderate',0.21,8500],   OK:[0.91,5.2,'high',0.19,8000],
+  OR:[1.04,4.0,'moderate',0.24,9000],   PA:[0.99,4.2,'moderate',0.22,8500],
+  RI:[1.09,4.1,'moderate',0.26,9000],   SC:[0.94,5.0,'moderate',0.20,8000],
+  SD:[0.93,4.9,'moderate',0.19,8000],   TN:[0.94,4.6,'moderate',0.20,8000],
+  TX:[0.91,5.6,'high',0.19,7500],       UT:[0.96,5.8,'high',0.20,8000],
+  VT:[1.03,4.0,'moderate',0.25,9000],   VA:[1.00,4.6,'moderate',0.21,8500],
+  WA:[1.04,3.8,'low',0.24,9000],        WV:[0.93,4.0,'moderate',0.19,8500],
+  WI:[0.95,4.0,'moderate',0.21,8500],   WY:[0.94,5.0,'moderate',0.19,8500],
+  avg:[1.0,4.5,'average',0.20,8500]
+};
+const SUN_DESC={
+  low:'Low sun region — longer payback expected',
+  moderate:'Moderate sun — typical national performance',
+  high:'Good sun — solid production potential',
+  excellent:'Excellent sun — among the best in the US',
+  average:'National average sun hours applied'
+};
+
+function onState(){
+  const s=document.getElementById('state').value;
+  const el=document.getElementById('sun-hint');
+  if(!s||s==='avg'){el.style.display='none';return;}
+  const d=SD[s];if(!d){el.style.display='none';return;}
+  el.style.display='block';
+  el.innerHTML=`☀ <strong>${d[1]} peak sun hrs/day</strong> — ${SUN_DESC[d[2]]}`;
+}
+
+const fmt=(n,d=0)=>n.toLocaleString('en-US',{minimumFractionDigits:d,maximumFractionDigits:d});
+const $=n=>'$'+fmt(Math.round(n));
+
+function mpay(p,apr,yrs){
+  const r=apr/100/12,n=yrs*12;
+  return r===0?p/n:p*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1);
+}
+function cumArr(ms){
+  let a=[],c=0,ann=ms*12;
+  for(let y=1;y<=25;y++){c+=ann-(y>10?150:0);a.push(c);ann*=1.025;}
+  return a;
+}
+function beCash(nc,ms){const a=cumArr(ms);for(let i=0;i<a.length;i++){if(a[i]>=nc)return i+1;}return null;}
+function ts25(nc,ms){return cumArr(ms)[24]-nc;}
+function beLoan(nc,ms,apr,yrs){
+  const p=mpay(nc,apr,yrs);let c=0,s=ms;
+  for(let y=1;y<=40;y++){c+=s*12-(y<=yrs?p*12:0)-(y>10?150:0);if(c>=0)return y;s*=1.025;}
+  return null;
+}
+function tsLoan25(nc,ms,apr,yrs){
+  const p=mpay(nc,apr,yrs);let c=0,s=ms;
+  for(let y=1;y<=25;y++){c+=s*12-(y<=yrs?p*12:0)-(y>10?150:0);s*=1.025;}
+  return c;
+}
+
+// Count-up animation for stat values
+function countUp(el,target,prefix='',suffix='',duration=700){
+  const start=Date.now();
+  const tick=()=>{
+    const p=Math.min((Date.now()-start)/duration,1);
+    const ease=1-Math.pow(1-p,3);
+    const v=Math.round(target*ease);
+    el.textContent=prefix+(target>=1000?fmt(v):v)+suffix;
+    if(p<1)requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
+}
+
+// Radial arc
+function drawArc(be){
+  const svg=document.getElementById('arc-svg');
+  const cx=70,cy=70,r=54;
+  const MAX_YRS=25;
+  const pct=be?Math.min(be/MAX_YRS,1):0;
+  // Arc from 225deg to 315deg (270deg sweep = full)
+  const startDeg=135,sweepDeg=270;
+  const toRad=d=>d*Math.PI/180;
+  const arcX=(deg)=>cx+r*Math.cos(toRad(deg));
+  const arcY=(deg)=>cy+r*Math.sin(toRad(deg));
+  const endDeg=startDeg+sweepDeg*pct;
+
+  // Background track
+  const bx1=arcX(startDeg),by1=arcY(startDeg);
+  const bx2=arcX(startDeg+sweepDeg),by2=arcY(startDeg+sweepDeg);
+  const bLarge=sweepDeg>180?1:0;
+
+  // Foreground arc
+  let fgPath='';
+  if(pct>0){
+    const fx1=arcX(startDeg),fy1=arcY(startDeg);
+    const fx2=arcX(endDeg),fy2=arcY(endDeg);
+    const fLarge=(sweepDeg*pct)>180?1:0;
+    fgPath=`<path d="M${fx1.toFixed(2)} ${fy1.toFixed(2)} A${r} ${r} 0 ${fLarge} 1 ${fx2.toFixed(2)} ${fy2.toFixed(2)}"
+      fill="none" stroke="url(#arcGrad)" stroke-width="10" stroke-linecap="round"/>`;
+  }
+
+  // Color based on break-even
+  const col=be&&be<=8?'#3a6b4f':be&&be<=14?'#f2a900':'#b84c2e';
+
+  svg.innerHTML=`
+    <defs>
+      <linearGradient id="arcGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+        <stop offset="0%" stop-color="${col}" stop-opacity="0.6"/>
+        <stop offset="100%" stop-color="${col}"/>
+      </linearGradient>
+    </defs>
+    <path d="M${bx1.toFixed(2)} ${by1.toFixed(2)} A${r} ${r} 0 ${bLarge} 1 ${bx2.toFixed(2)} ${by2.toFixed(2)}"
+      fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="10" stroke-linecap="round"/>
+    ${fgPath}
+    <circle cx="${cx}" cy="${cy}" r="36" fill="rgba(255,255,255,0.04)"/>
+    <text x="${cx}" y="${cy+5}" text-anchor="middle" font-family="Fraunces,serif" font-size="26" font-weight="900" fill="${col}">
+      ${be||'25+'}
+    </text>
+    <text x="${cx}" y="${cy+20}" text-anchor="middle" font-family="DM Mono,monospace" font-size="8" fill="rgba(255,255,255,0.35)" letter-spacing="0.1em">
+      ${be?'YEARS':'NO BE'}
+    </text>`;
+  document.getElementById('arc-years').style.display='none';
+  document.querySelector('.arc-sub').textContent=be?`of ${MAX_YRS} yr horizon`:'beyond horizon';
+}
+
+// Stacked bar breakdown
+function renderBreakdown(gross, isCustom, laborPct){
+  const items=[
+    {name:'Panels',       pct:0.55-laborPct*0.35, color:'#f2a900'},
+    {name:'Inverter',     pct:0.13,                color:'#3a6b4f'},
+    {name:'Racking',      pct:0.07,                color:'#7a96aa'},
+    {name:'Wiring',       pct:0.05,                color:'#b0c4ce'},
+    {name:'Labor',        pct:laborPct,            color:'#192433'},
+    {name:'Permits',      pct:0.05,                color:'#c07800'},
+    {name:'Overhead',     pct:1-(0.55-laborPct*0.35)-0.13-0.07-0.05-laborPct-0.05, color:'#ddd4c0'},
+  ];
+  // Clamp & normalize
+  let total=items.reduce((s,i)=>s+i.pct,0);
+  items.forEach(i=>i.pct=Math.max(0.02,i.pct/total));
+  total=items.reduce((s,i)=>s+i.pct,0);
+  items.forEach(i=>i.pct/=total);
+
+  const bar=document.getElementById('sbar');
+  bar.innerHTML=items.map(it=>{
+    const amt=gross*it.pct;
+    return `<div class="sb-seg" style="flex:${it.pct};background:${it.color}" data-tip="${it.name}: ${$(amt)} (${Math.round(it.pct*100)}%)"></div>`;
+  }).join('');
+
+  document.getElementById('bd-legend').innerHTML=items.map(it=>
+    `<div class="bd-leg-item"><div class="bd-dot" style="background:${it.color}"></div>${it.name}<span class="bd-leg-val">${$(gross*it.pct)}</span></div>`
+  ).join('');
+
+  document.getElementById('bd-note').textContent=isCustom
+    ?`Based on your quote of ${$(gross)}. Segment sizes are estimated — ask your installer for a line-item breakdown.`
+    :`National average breakdown. Labor costs vary significantly by state. Always get 3+ competitive bids.`;
+}
+
+// Payback chart
+function drawChart(nc,ms,be){
+  const svg=document.getElementById('payback-svg');
+  const W=700,H=190,P={t:24,r:24,b:32,l:58};
+  const cw=W-P.l-P.r,ch=H-P.t-P.b;
+  const arr=cumArr(ms);
+  const maxY=Math.max(arr[24],nc)*1.1;
+  const minY=Math.min(0,arr[0])*1.08;
+  const rY=maxY-minY;
+  const xs=i=>P.l+(i/24)*cw;
+  const ys=v=>P.t+ch-((v-minY)/rY)*ch;
+  const pts=arr.map((v,i)=>`${xs(i).toFixed(1)},${ys(v).toFixed(1)}`);
+  const zy=ys(0),cy=ys(nc);
+
+  // Area below savings, split into loss (red) and gain (green) zones
+  const lossArea=`M${xs(0).toFixed(1)},${zy.toFixed(1)} L${pts.join(' L')} L${xs(24).toFixed(1)},${zy.toFixed(1)}Z`;
+
+  let ticks='';
+  for(let i=0;i<=4;i++){
+    const v=minY+(rY/4)*i,y=ys(v);
+    const lb=Math.abs(v)<400?'$0':(v<0?'-$'+Math.round(Math.abs(v)/1000)+'k':'$'+Math.round(v/1000)+'k');
+    ticks+=`<line x1="${P.l-4}" y1="${y.toFixed(1)}" x2="${P.l}" y2="${y.toFixed(1)}" stroke="#ddd4c0" stroke-width="1"/>
+      <text x="${P.l-8}" y="${(y+4).toFixed(1)}" text-anchor="end" font-family="DM Mono,monospace" font-size="9" fill="#7a96aa">${lb}</text>`;
+  }
+  let xl='';
+  [0,4,9,14,19,24].forEach(i=>{
+    xl+=`<text x="${xs(i).toFixed(1)}" y="${H-P.b+14}" text-anchor="middle" font-family="DM Mono,monospace" font-size="9" fill="#7a96aa">Yr${i+1}</text>`;
+  });
+  let beM='';
+  if(be&&be<=25){
+    const bx=xs(be-1),by=ys(nc);
+    beM=`<line x1="${bx.toFixed(1)}" y1="${P.t}" x2="${bx.toFixed(1)}" y2="${H-P.b}" stroke="#1a1610" stroke-width="1.5" stroke-dasharray="4,3" opacity="0.35"/>
+      <circle cx="${bx.toFixed(1)}" cy="${by.toFixed(1)}" r="6" fill="#0c1821"/>
+      <circle cx="${bx.toFixed(1)}" cy="${by.toFixed(1)}" r="3.5" fill="#f2a900"/>
+      <text x="${(bx+9).toFixed(1)}" y="${(by-9).toFixed(1)}" font-family="DM Mono,monospace" font-size="9" fill="#0c1821" font-weight="500">Yr ${be}</text>`;
+  }
+  svg.innerHTML=`<defs>
+    <clipPath id="cc"><rect x="${P.l}" y="${P.t}" width="${cw}" height="${ch}"/></clipPath>
+    <linearGradient id="gainGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#3a6b4f" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#3a6b4f" stop-opacity="0.03"/>
+    </linearGradient>
+    <linearGradient id="lossGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#b84c2e" stop-opacity="0.04"/>
+      <stop offset="100%" stop-color="#b84c2e" stop-opacity="0.14"/>
+    </linearGradient>
+  </defs>
+  <rect x="${P.l}" y="${P.t}" width="${cw}" height="${ch}" fill="white"/>
+  <rect x="${P.l}" y="${zy.toFixed(1)}" width="${cw}" height="${(P.t+ch-parseFloat(zy.toFixed(1))).toFixed(1)}" fill="url(#lossGrad)" clip-path="url(#cc)"/>
+  <line x1="${P.l}" y1="${zy.toFixed(1)}" x2="${P.l+cw}" y2="${zy.toFixed(1)}" stroke="#ddd4c0" stroke-width="1" clip-path="url(#cc)"/>
+  <path d="${lossArea}" fill="url(#gainGrad)" clip-path="url(#cc)"/>
+  <path d="M${pts.join(' L')}" stroke="#3a6b4f" stroke-width="2.5" fill="none" stroke-linejoin="round" stroke-linecap="round" clip-path="url(#cc)"/>
+  <line x1="${P.l}" y1="${cy.toFixed(1)}" x2="${P.l+cw}" y2="${cy.toFixed(1)}" stroke="#b87800" stroke-width="1.5" stroke-dasharray="6,4" clip-path="url(#cc)"/>
+  <text x="${P.l+cw-4}" y="${(cy-7).toFixed(1)}" text-anchor="end" font-family="DM Mono,monospace" font-size="9" fill="#b87800">Net cost</text>
+  ${beM}
+  <line x1="${P.l}" y1="${P.t}" x2="${P.l}" y2="${H-P.b}" stroke="#ddd4c0" stroke-width="1"/>
+  <line x1="${P.l}" y1="${H-P.b}" x2="${P.l+cw}" y2="${H-P.b}" stroke="#ddd4c0" stroke-width="1"/>
+  ${ticks}${xl}`;
+}
+
+function dsire(s){return s&&s!=='avg'?`https://www.dsireusa.org/resources/detailed-summary-maps/?state=${s}`:'https://www.dsireusa.org/';}
+
+function calc(){
+  const bill=parseFloat(document.getElementById('bill').value)||150;
+  const kwh=parseFloat(document.getElementById('kwh').value)||900;
+  const state=document.getElementById('state').value;
+  const roof=parseFloat(document.getElementById('roof').value)||0;
+  const fin=document.querySelector('input[name="fin"]:checked').value;
+  const apr=parseFloat(document.getElementById('apr').value)||6.5;
+  const yrs=parseInt(document.getElementById('term').value)||15;
+  const useCustom=document.getElementById('use-custom').checked;
+  const customCost=parseFloat(document.getElementById('custom-cost').value)||0;
+  const stateInc=parseFloat(document.querySelector('input[name="si"]:checked').value)||0;
+  const applyITC=document.getElementById('itc').checked;
+
+  const [cm,sun,,laborPct,battCost]=(SD[state]||SD.avg);
+  const annKwh=kwh*12;
+  const rawKw=annKwh/(sun*365*0.80);
+  const maxKw=roof>0?roof/65:Infinity;
+  const kw=Math.round(Math.min(rawKw,maxKw)*10)/10;
+
+  const estGross=kw*1000*2.85*cm;
+  const gP=useCustom&&customCost>0?customCost:estGross;
+  const gB=gP+battCost;
+
+  const itcP=applyITC?gP*0.30:0;
+  const itcB=applyITC?gB*0.30:0;
+  const nP=Math.max(0,gP-itcP-stateInc);
+  const nB=Math.max(0,gB-itcB-stateInc);
+
+  const prod=kw*1000*sun*365*0.80/1000;
+  const ms=Math.min(prod/annKwh,1.0)*bill;
+
+  const cBE=beCash(nP,ms), lBE=beLoan(nP,ms,apr,yrs);
+  const pBE=fin==='cash'?cBE:lBE;
+  const c25=ts25(nP,ms), l25=tsLoan25(nP,ms,apr,yrs);
+  const bc25=ts25(nB,ms), bl25=tsLoan25(nB,ms,apr,yrs);
+  const bcBE=beCash(nB,ms);
+  const lmp=mpay(nP,apr,yrs), blmp=mpay(nB,apr,yrs);
+
+  // Show results
+  document.getElementById('empty').style.display='none';
+  const rc=document.getElementById('rc');
+  rc.style.display='block';
+  rc.style.animation='none';rc.offsetHeight;rc.style.animation='';
+
+  // Mood background
+  const right=document.getElementById('right');
+  right.className='right '+(pBE&&pBE<=8?'mood-good':pBE&&pBE<=14?'':'mood-poor');
+
+  // Verdict
+  const vb=document.getElementById('vb');
+  vb.className='verdict';
+  const mood=pBE&&pBE<=8?'good':pBE&&pBE<=14?'fair':'poor';
+  vb.classList.add(mood);
+  document.getElementById('vi').textContent=mood==='good'?'🌱':mood==='fair'?'☀️':'🌥';
+  document.getElementById('vt').textContent=mood==='good'?'Excellent solar investment.':mood==='fair'?'Solid case for going solar.':'Marginal financial case.';
+  document.getElementById('vs').textContent=pBE?`Break-even in ${pBE} years — ${mood==='good'?'strong long-term returns ahead':'typical for your region'}.`:'Payback extends beyond 25 years — weigh carefully.';
+  document.getElementById('vp').textContent=mood==='good'?'Strong ROI':mood==='fair'?'Good Value':'Review Carefully';
+
+  // Arc
+  drawArc(pBE);
+
+  // Stats with count-up
+  const statsData=[
+    ['s-kw',kw,'',''],
+    ['s-prod',Math.round(prod),'',''],
+    ['s-save',ms,'$',''],
+    ['s-gross',gP,'$',''],
+    ['s-net',nP,'$',''],
+    ['s-profit',c25,'$',''],
+  ];
+  statsData.forEach(([id,val,pre,suf])=>{
+    const el=document.getElementById(id);
+    if(id==='s-kw'){el.textContent=val;return;}
+    countUp(el,val,pre,suf);
+  });
+
+  // Breakdown
+  renderBreakdown(gP,useCustom&&customCost>0,laborPct);
+
+  // Incentive pills
+  let pills='';
+  if(applyITC) pills+=`<div class="ipill sage"><span>Federal ITC (30% — pre-2026)</span><span class="ipill-amt">${$(itcP)}</span></div>`;
+  if(stateInc>0) pills+=`<div class="ipill gold"><span>State / Utility Rebate</span><span class="ipill-amt">${$(stateInc)}</span></div>`;
+  if(!applyITC&&stateInc===0) pills+=`<div class="ipill mist"><span>No incentives selected. <a href="${dsire(state)}" target="_blank" rel="noopener">Check DSIRE ↗</a> for programs in your state.</span></div>`;
+  else pills+=`<div class="ipill mist"><span>Additional programs may apply — <a href="${dsire(state)}" target="_blank" rel="noopener">check DSIRE ↗</a></span></div>`;
+  document.getElementById('ipills').innerHTML=pills;
+
+  // Chart
+  drawChart(nP,ms,cBE);
+  document.getElementById('chart-profit').textContent=c25>0?$(c25)+' net profit':$(Math.abs(c25))+' short of break-even';
+
+  // Scenarios
+  const allS=[c25,l25,bc25,bl25];
+  const bestI=allS.indexOf(Math.max(...allS));
+  const scenarios=[
+    {type:'Panels Only',fin:'cash',name:'Cash Purchase',rows:[
+      {k:'System cost',v:$(gP)},{k:'After incentives',v:$(nP)},
+      {k:'Monthly savings',v:$(ms),c:'g'},{k:'Break-even',v:cBE?`${cBE} yrs`:'25yr+',c:cBE&&cBE<=10?'g':'a'},
+      {k:'25yr net savings',v:$(c25),c:c25>0?'g':'a'},
+    ]},
+    {type:'Panels Only',fin:'loan',name:`Financed @ ${apr}% / ${yrs}yr`,rows:[
+      {k:'After incentives',v:$(nP)},{k:'Monthly payment',v:$(lmp)},
+      {k:'Monthly savings',v:$(ms),c:'g'},{k:'Break-even',v:lBE?`${lBE} yrs`:'25yr+',c:lBE&&lBE<=10?'g':'a'},
+      {k:'25yr net savings',v:$(l25),c:l25>0?'g':'a'},
+    ]},
+    {type:'Panels + Battery',fin:'cash',name:'Cash Purchase',rows:[
+      {k:'System cost',v:$(gB)},{k:'After incentives',v:$(nB)},
+      {k:'Monthly savings',v:$(ms),c:'g'},{k:'Break-even',v:bcBE?`${bcBE} yrs`:'25yr+',c:bcBE&&bcBE<=10?'g':'a'},
+      {k:'25yr net savings',v:$(bc25),c:bc25>0?'g':'a'},
+    ]},
+    {type:'Panels + Battery',fin:'loan',name:`Financed @ ${apr}% / ${yrs}yr`,rows:[
+      {k:'After incentives',v:$(nB)},{k:'Monthly payment',v:$(blmp)},
+      {k:'Monthly savings',v:$(ms),c:'g'},{k:'Break-even',v:'25yr+',c:'a'},
+      {k:'25yr net savings',v:$(bl25),c:bl25>0?'g':'a'},
+    ]},
+  ];
+  document.getElementById('sc-grid').innerHTML=scenarios.map((s,i)=>{
+    const sel=s.fin===fin,best=i===bestI;
+    const cls=['sc-card',sel?'sel':'',best?'best':''].filter(Boolean).join(' ');
+    let badge='';
+    if(sel&&best)badge='<div class="sc-badge both">Your Pick · Best Value</div>';
+    else if(sel)badge='<div class="sc-badge fin">Your Pick</div>';
+    else if(best)badge='<div class="sc-badge bst">Best Value</div>';
+    return `<div class="${cls}">${badge}
+      <div class="sc-type">${s.type}</div>
+      <div class="sc-name">${s.name}</div>
+      ${s.rows.map(r=>`<div class="sc-row"><span class="sk">${r.k}</span><span class="sv ${r.c||''}">${r.v}</span></div>`).join('')}
+    </div>`;
+  }).join('');
+}
+
+function openModal(){document.getElementById('modal').classList.add('open');}
+function closeModal(){document.getElementById('modal').classList.remove('open');}
+</script>
+</body>
+</html>

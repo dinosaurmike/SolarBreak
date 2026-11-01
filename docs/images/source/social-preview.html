@@ -1,0 +1,35 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>SolarBreak social preview</title>
+<!-- Serve the repo at /solar/ (see record.js), open this page at 1280x640 and screenshot: docs/images/solarbreak-social.png -->
+<style>
+@font-face{font-family:Fraunces;font-weight:100 900;src:url(../../../_next/static/media/af4bf8399d1aacdf-s.p.woff2) format("woff2")}
+@font-face{font-family:DMSans;font-weight:100 1000;src:url(../../../_next/static/media/13971731025ec697-s.p.woff2) format("woff2")}
+@font-face{font-family:DMMono;font-weight:500;src:url(../../../_next/static/media/b7ea2ab4a8ad1f81-s.p.woff2) format("woff2")}
+*{margin:0;box-sizing:border-box}
+html,body{width:1280px;height:640px;overflow:hidden;font-family:DMSans,sans-serif;color:#fff;background:#141f38}
+body{background:radial-gradient(circle at 18% 22%,rgba(251,191,36,.16),transparent 42%),linear-gradient(135deg,#141f38,#22345e 60%,#324267)}
+.left{position:absolute;left:64px;top:70px;width:500px}
+.sun{width:86px;height:86px}
+.kicker{margin-top:22px;font-family:DMMono,monospace;font-size:16px;letter-spacing:.18em;color:#fbbf24}
+h1{margin-top:12px;font-family:Fraunces,serif;font-size:84px;font-weight:900;letter-spacing:-2px;line-height:1}
+h1 span{color:#fbbf24}
+.tag{margin-top:22px;font-size:27px;line-height:1.35;color:rgba(255,255,255,.78)}
+.tag b{color:#fff;font-weight:600}
+.chips{margin-top:30px;display:flex;flex-wrap:wrap;gap:10px;font-family:DMMono,monospace;font-size:14px}
+.chip{padding:8px 13px;border-radius:10px;border:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.8);background:rgba(255,255,255,.05)}
+.chip.ok{color:#6ee7b7;border-color:rgba(110,231,183,.4);background:rgba(16,185,129,.1)}
+.foot{position:absolute;left:64px;bottom:44px;font-family:DMMono,monospace;font-size:16px;color:rgba(255,255,255,.5);letter-spacing:.08em}
+.foot span{color:#fbbf24}
+.shot{position:absolute;right:-40px;top:60px;width:700px;height:520px;border-radius:20px;overflow:hidden;border:1px solid rgba(255,255,255,.15);box-shadow:0 30px 80px rgba(0,0,0,.45);background:#f7f3ea}
+.shot img{width:1100px;margin:-40px 0 0 -330px}
+</style></head><body>
+<div class="left">
+  <svg class="sun" viewBox="0 0 100 100"><g stroke="#fbbf24" stroke-width="6" stroke-linecap="round"><line x1="50" y1="6" x2="50" y2="18"/><line x1="50" y1="82" x2="50" y2="94"/><line x1="6" y1="50" x2="18" y2="50"/><line x1="82" y1="50" x2="94" y2="50"/><line x1="19" y1="19" x2="27" y2="27"/><line x1="73" y1="73" x2="81" y2="81"/><line x1="19" y1="81" x2="27" y2="73"/><line x1="73" y1="27" x2="81" y2="19"/></g><circle cx="50" cy="50" r="20" fill="#fbbf24"/><circle cx="50" cy="50" r="13" fill="#fcd34d"/></svg>
+  <div class="kicker">SOLAR ROI ESTIMATOR</div>
+  <h1>Solar<span>Break</span></h1>
+  <div class="tag">See exactly when solar starts making you money. <b>Know before you sign.</b></div>
+  <div class="chips"><span class="chip">50 STATES</span><span class="chip">CASH VS LOAN</span><span class="chip ok">BREAK-EVEN ✓</span><span class="chip">NO SIGNUP</span></div>
+</div>
+<div class="foot">DINOMIKE.CA/<span>SOLAR</span></div>
+<div class="shot"><img src="shot-results.png" alt=""></div>
+</body></html>
